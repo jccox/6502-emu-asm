@@ -1,0 +1,6 @@
+/*Memory mapping for the emulated device:
+  0 - 0x1FFF: Ram
+  0x2000 - 0x3FFF: IO mirrored every two bytes
+  0x4000 - 0x7FFF: Exit the emulator
+  0x8000 - 0xFFFF: Program Memory
+*/

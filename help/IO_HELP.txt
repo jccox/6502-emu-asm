@@ -1,0 +1,14 @@
+/** 
+ * @param value The byte to set the control reg to.
+ * @remarks Here is what the bits do to the control reg.
+ * Bit 0 - Turn on to force buffer to output to last used port.
+ * Note that this cancels all control features after this.
+ * Bit 1 - Turn on default forced output (Output characters at a time)
+ * Bit 2 - Line buffering enabled (Active low).
+ * Bit 3 - Determine whether port is being defined
+ * Bit 4 - Determine whether defined port is input(0) or output(1).
+ This is only useful
+ * for port 0, which assigns files to ports.
+ * Bits 5-7 - Select which port to use.
+ *         
+**/

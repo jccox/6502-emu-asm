@@ -1,0 +1,63 @@
+**********************************************************
+
+This file  includes a 6502-based emulator and assembler.  The assembler implements labels, error checking, assembling, and several assembler directives
+such as .text blocks, byte blocks, etc.  
+
+The emulator is written in C++ in a style conforming to more of a simulation than an emulation.
+
+The assembler is ported from C and is by nature written in an imperative programming style.  It outputs a program directly usable by the emulator.
+
+To build the emulator, do 'make', or 'make debug' to run it in debug
+mode.  Debug mode will step through the program by instruction, changing
+on a newline.  Commands include 'print mem x' where x is a memory address and 'stop at x' where x is a label.  
+
+
+
+Note that this was written in Linux and may or may not be compatible with other Unix systems.
+
+
+
+Once the program is built, run it with './emu x' where x is the program's name.
+
+**********************************************************
+Included Program:
+
+A sample program is included; search.as
+This program is a grep like program, searching a file
+for a string and printing out the line if it is found.
+
+To run it, do './emu search.asm', and when prompted,
+enter 'hello.txt' and 'hello' to search hello.txt for
+the string 'hello'.
+**********************************************************
+
+Here is a memory map of the computer:
+
+0 - 0x1FFF: RAM
+0x2000 - 0x3FFF: IO mirrored every two bytes
+0x4000 - 0x7FFF: Exit the emulator
+0x8000 - 0xFFFF: ROM
+
+Here is the io mapping:
+
+Even byte: Control register
+Odd byte: Output Port
+
+ 
+Here is what to set the control reg to:
+Bit 0 - Turn on to force buffer to output to last used port.
+Note that this cancels all control features after this.
+Bit 1 - Turn on default forced output (Output characters at a time)
+Bit 2 - Line buffering enabled.
+Bit 3 - Determine whether a port is being defined
+Bit 4 - Determine whether defined port is input(0) or output(1).  This is only useful
+for port 0, which assigns files to ports.
+Bits 5-7 - Select which port to use.
+
+
+Special ports:
+Number	Name		Bits 5-7:
+Port 0: Internal port   000
+Port 1: stdin	 	001
+Port 2: stdout.		010
+**********************************************************
